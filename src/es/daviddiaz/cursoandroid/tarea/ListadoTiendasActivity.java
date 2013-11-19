@@ -3,15 +3,12 @@ package es.daviddiaz.cursoandroid.tarea;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 import es.daviddiaz.cursoandroid.tarea.dao.CentroComercialDAO;
 import es.daviddiaz.cursoandroid.tarea.dominio.Tienda;
 

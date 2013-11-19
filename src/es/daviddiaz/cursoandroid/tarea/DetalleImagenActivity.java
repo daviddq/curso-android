@@ -1,9 +1,5 @@
 package es.daviddiaz.cursoandroid.tarea;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -64,52 +60,5 @@ public class DetalleImagenActivity extends Activity {
     default:
       return super.onOptionsItemSelected(item); 
     }    
-  }
-
-  
-
-//  @Override
-//  public boolean onOptionsItemSelected(MenuItem item) {
-//    switch (item.getItemId()) {
-//    case R.id.action_share:
-//      if (null!=tienda) {
-//        InputStream in = null;
-//        OutputStream out = null;
-//
-//        try {
-//          in = getResources().openRawResource(tienda.getFotografia());
-//          out = new FileOutputStream(new File(Environment.getExternalStorageDirectory(), "image.png"));
-//
-//          copyFile(in, out);
-//
-//          in.close();
-//          out.flush();
-//          out.close();
-//        } catch (Exception e) {
-//          Log.e("tag", e.getMessage());
-//          e.printStackTrace();
-//        }
-//
-//        Intent emailIntent = new Intent(Intent.ACTION_SEND);
-//        emailIntent.setType("image/png");
-//        Uri uri = Uri.fromFile(new File(Environment.getExternalStorageDirectory(), "image.png"));
-//        emailIntent.putExtra(Intent.EXTRA_STREAM, uri);
-//        startActivity(Intent.createChooser(emailIntent, getString(R.string.action_share)));
-//      } 
-//      return true;
-//    case R.id.action_favorite:
-//      Toast.makeText(this, "Marcado como favorito", Toast.LENGTH_SHORT).show();
-//      return true;
-//    default:
-//      return super.onOptionsItemSelected(item); 
-//    }    
-//  }
-
-  private void copyFile(InputStream in, OutputStream out) throws IOException {
-    byte[] buffer = new byte[1024];
-    int read;
-    while ((read = in.read(buffer)) != -1) {
-      out.write(buffer, 0, read);
-    }
   }
 }
