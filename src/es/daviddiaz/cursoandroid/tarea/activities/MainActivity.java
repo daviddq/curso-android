@@ -27,9 +27,12 @@ extends ActionBarActivity {
   private String[] drawerOptions;
   private ActionBarDrawerToggle drawerToggle;
   
-  int indexAnterior = 2;
+  static final int INDEX_IMAGENES = 0;
+  static final int INDEX_TIENDAS = 1;
+  static final int INDEX_COMUNIDAD = 2;
+  
+  int indexAnterior = 0;
 
-// TODO: rellenar
   private Fragment[] fragments = {
     new ImagenesFragment(),
     new TiendasFragment(),
@@ -79,12 +82,12 @@ extends ActionBarActivity {
     FragmentManager manager = getSupportFragmentManager();
     manager
       .beginTransaction()
-      .add(R.id.contentFrame, fragments[0])
-      .add(R.id.contentFrame, fragments[1])
-      .add(R.id.contentFrame, fragments[2])
-      .hide(fragments[0])
-      .hide(fragments[1])
-      .hide(fragments[2])
+      .add(R.id.contentFrame, fragments[INDEX_IMAGENES])
+      .hide(fragments[INDEX_IMAGENES])
+      .add(R.id.contentFrame, fragments[INDEX_TIENDAS])
+      .hide(fragments[INDEX_TIENDAS])
+      .add(R.id.contentFrame, fragments[INDEX_COMUNIDAD])
+      .hide(fragments[INDEX_COMUNIDAD])
       .commit();
 
     setContent(0);
@@ -100,13 +103,10 @@ extends ActionBarActivity {
     toHide = fragments[indexAnterior];
     toShow = fragments[index];
 
-    switch (index) {
-    case 0:
+    if (index==INDEX_TIENDAS) {
       bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-      break;
-    default:
+    } else {
       bar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-      break;
     }
 
     getSupportFragmentManager()
