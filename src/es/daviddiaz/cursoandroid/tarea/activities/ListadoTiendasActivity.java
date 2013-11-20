@@ -1,4 +1,4 @@
-package es.daviddiaz.cursoandroid.tarea;
+package es.daviddiaz.cursoandroid.tarea.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,6 +9,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import es.daviddiaz.cursoandroid.tarea.ListAdapter;
+import es.daviddiaz.cursoandroid.tarea.R;
 import es.daviddiaz.cursoandroid.tarea.dao.CentroComercialDAO;
 import es.daviddiaz.cursoandroid.tarea.dominio.Tienda;
 

@@ -1,0 +1,156 @@
+package es.daviddiaz.cursoandroid.tarea.activities;
+
+import android.content.res.Configuration;
+import android.os.Bundle;
+import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import es.daviddiaz.cursoandroid.tarea.R;
+import es.daviddiaz.cursoandroid.tarea.dao.CentroComercialDAO;
+import es.daviddiaz.cursoandroid.tarea.fragments.ComunidadFragment;
+import es.daviddiaz.cursoandroid.tarea.fragments.ImagenesFragment;
+import es.daviddiaz.cursoandroid.tarea.fragments.TiendasFragment;
+
+public class MainActivity 
+extends ActionBarActivity {
+  private ListView drawerList;
+  private DrawerLayout drawerLayout;
+  private String[] drawerOptions;
+  private ActionBarDrawerToggle drawerToggle;
+  
+  int indexAnterior = 2;
+
+// TODO: rellenar
+  private Fragment[] fragments = {
+    new ImagenesFragment(),
+    new TiendasFragment(),
+    new ComunidadFragment()
+  };
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+
+    CentroComercialDAO.Inicializar();
+    
+    drawerLayout = (DrawerLayout)findViewById(R.id.drawerLayout);
+    drawerList = (ListView)findViewById(R.id.left_drawer);
+    drawerOptions = getResources().getStringArray(R.array.drawer_options);
+    drawerList.setAdapter(new ArrayAdapter<String>(
+        this, 
+        R.layout.drawer_list_item, 
+        drawerOptions));
+    
+    drawerList.setItemChecked(0, true);
+    drawerList.setOnItemClickListener(new DrawerItemClickListener());
+    
+    drawerToggle = new ActionBarDrawerToggle(
+        this, 
+        drawerLayout, 
+        R.drawable.ic_drawer_am, 
+        R.string.drawer_open,
+        R.string.drawer_close) {
+      
+      public void onDrawerClosed(View view) {
+        ActivityCompat.invalidateOptionsMenu(MainActivity.this);
+      }
+      
+      public void onDrawerOpened(View view) {
+        ActivityCompat.invalidateOptionsMenu(MainActivity.this);
+      }
+    };
+    
+    drawerLayout.setDrawerListener(drawerToggle);
+    
+    final ActionBar actionBar = getSupportActionBar();
+    actionBar.setDisplayHomeAsUpEnabled(true);
+    actionBar.setHomeButtonEnabled(true);
+
+    FragmentManager manager = getSupportFragmentManager();
+    manager
+      .beginTransaction()
+      .add(R.id.contentFrame, fragments[0])
+      .add(R.id.contentFrame, fragments[1])
+      .add(R.id.contentFrame, fragments[2])
+      .hide(fragments[0])
+      .hide(fragments[1])
+      .hide(fragments[2])
+      .commit();
+
+    setContent(0);
+  }
+  
+  public void setContent(int index) {
+    Fragment toHide = null;
+    Fragment toShow = null;
+    
+    final ActionBar bar = getSupportActionBar();
+    bar.setTitle(drawerOptions[index]);
+    
+    toHide = fragments[indexAnterior];
+    toShow = fragments[index];
+
+    switch (index) {
+    case 0:
+      bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+      break;
+    default:
+      bar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+      break;
+    }
+
+    getSupportFragmentManager()
+      .beginTransaction()
+      .hide(toHide)
+      .show(toShow)
+      .commit();
+
+    drawerList.setItemChecked(index, true);
+    drawerLayout.closeDrawer(drawerList);
+    
+    indexAnterior = index;
+  }
+  
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    if (item.getItemId() == android.R.id.home) {
+      if (drawerLayout.isDrawerOpen(drawerList)) {
+        drawerLayout.closeDrawer(drawerList);
+      } else {
+        drawerLayout.openDrawer(drawerList);
+      }
+      return true;
+     }
+    return super.onOptionsItemSelected(item);
+  }
+  
+  @Override
+  protected void onPostCreate(Bundle savedInstanceState) {
+    super.onPostCreate(savedInstanceState);
+    drawerToggle.syncState();
+  }
+  
+  @Override
+  public void onConfigurationChanged(Configuration newConfig) {
+    super.onConfigurationChanged(newConfig);
+    drawerToggle.onConfigurationChanged(newConfig);
+  }
+  
+  class DrawerItemClickListener
+  implements ListView.OnItemClickListener {
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long arg3) {
+      setContent(position);
+    }
+  }
+}

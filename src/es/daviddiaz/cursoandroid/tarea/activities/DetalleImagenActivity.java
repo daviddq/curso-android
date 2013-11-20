@@ -1,4 +1,4 @@
-package es.daviddiaz.cursoandroid.tarea;
+package es.daviddiaz.cursoandroid.tarea.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.Toast;
+import es.daviddiaz.cursoandroid.tarea.R;
 import es.daviddiaz.cursoandroid.tarea.dao.CentroComercialDAO;
 import es.daviddiaz.cursoandroid.tarea.dominio.Tienda;
 
@@ -44,7 +45,9 @@ public class DetalleImagenActivity extends Activity {
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
-    case R.id.action_share:
+    // TODO: cambiar
+    //case R.id.action_share:
+    case 1:
       if (null!=tienda) {
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("image/jpg");
@@ -54,7 +57,9 @@ public class DetalleImagenActivity extends Activity {
           getString(R.string.action_share)));
       } 
       return true;
-    case R.id.action_favorite:
+    // TODO: cambiar
+    //case R.id.action_favorite:
+    case 2:
       Toast.makeText(this, "Marcado como favorito", Toast.LENGTH_SHORT).show();
       return true;
     default:
