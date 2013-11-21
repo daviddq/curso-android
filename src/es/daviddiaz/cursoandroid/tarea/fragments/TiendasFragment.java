@@ -19,7 +19,7 @@ implements TabListener {
 
   private Fragment[] fragments = {
       new ListadoTiendasFragment(),
-      new ListadoTiendasFragment()
+      new MapaFragment()
   };
   
   int indexAnterior = 0;
