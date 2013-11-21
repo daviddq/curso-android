@@ -18,6 +18,7 @@ import es.daviddiaz.cursoandroid.tarea.R;
 import es.daviddiaz.cursoandroid.tarea.dao.CentroComercialDAO;
 import es.daviddiaz.cursoandroid.tarea.fragments.ComunidadFragment;
 import es.daviddiaz.cursoandroid.tarea.fragments.ImagenesFragment;
+import es.daviddiaz.cursoandroid.tarea.fragments.ListadoTiendasFragment;
 import es.daviddiaz.cursoandroid.tarea.fragments.TiendasFragment;
 
 public class MainActivity 
