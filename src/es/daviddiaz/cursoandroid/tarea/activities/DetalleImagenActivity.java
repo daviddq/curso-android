@@ -45,9 +45,7 @@ public class DetalleImagenActivity extends FragmentActivity {
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
-    // TODO: cambiar
-    //case R.id.action_share:
-    case 1:
+    case R.id.action_share:
       if (null!=tienda) {
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("image/jpg");
@@ -57,8 +55,7 @@ public class DetalleImagenActivity extends FragmentActivity {
           getString(R.string.action_share)));
       } 
       return true;
-    // TODO: cambiar
-    //case R.id.action_favorite:
+    case R.id.action_favorite:
     case 2:
       Toast.makeText(this, "Marcado como favorito", Toast.LENGTH_SHORT).show();
       return true;

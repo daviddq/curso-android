@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import es.daviddiaz.cursoandroid.tarea.R;
 import es.daviddiaz.cursoandroid.tarea.dao.ImagenPagerAdapter;
+import es.daviddiaz.cursoandroid.tarea.ui.ZoomOutPageTransformer;
 
 public class ImagenesFragment extends Fragment {
   ViewPager pager;
@@ -18,6 +19,7 @@ public class ImagenesFragment extends Fragment {
     
     ImagenPagerAdapter adapter = new ImagenPagerAdapter(getChildFragmentManager());
     pager.setAdapter(adapter);
+    pager.setPageTransformer(true, new ZoomOutPageTransformer());
   }
   
   @Override

@@ -125,26 +125,22 @@ public class DetalleTiendaActivity extends FragmentActivity {
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
-    // TODO
-    case 1:
-      //case R.id.action_share:
-        if (null!=tienda) {
-          String msg = getString(R.string.msg_share, tienda.getNombre(), tienda.getWebsite());
-          Intent intent = new Intent();
-          intent.setAction(Intent.ACTION_SEND);
-          intent.putExtra(Intent.EXTRA_TEXT, msg);
-          intent.setType("text/plain");
-          startActivity(Intent.createChooser(
-              intent, getString(R.string.action_share)));
-        } 
-        return true;
-      // TODO
-      //case R.id.action_favorite:
-    case 2:
-        Toast.makeText(this, "Marcado como favorito", Toast.LENGTH_SHORT).show();
-        return true;
-      default:
-        return super.onOptionsItemSelected(item); 
+    case R.id.action_share:
+      if (null!=tienda) {
+        String msg = getString(R.string.msg_share, tienda.getNombre(), tienda.getWebsite());
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_TEXT, msg);
+        intent.setType("text/plain");
+        startActivity(Intent.createChooser(
+            intent, getString(R.string.action_share)));
+      } 
+      return true;
+    case R.id.action_favorite:
+      Toast.makeText(this, "Marcado como favorito", Toast.LENGTH_SHORT).show();
+      return true;
+    default:
+      return super.onOptionsItemSelected(item); 
     }    
   }
 }
