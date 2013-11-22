@@ -1,49 +1,23 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/scrollView1"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentTop="true" >
+    android:orientation="vertical" >
 
-    <RelativeLayout
+    <ImageView
+        android:id="@+id/imagenTienda"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        tools:context=".DetalleImagenActivity" >
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:contentDescription="Imagen de la tienda"
+        android:src="@drawable/legostore" />
 
-        <ImageView
-            android:id="@+id/imagenTienda"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:contentDescription="Imagen de la tienda"
-            android:src="@drawable/legostore" />
+    <fragment
+        android:id="@+id/fragmentComentarios"
+        android:name="es.daviddiaz.cursoandroid.tarea.fragments.ComentariosFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        tools:layout="@layout/fragment_comentarios" />
 
-        <ImageView
-            android:id="@+id/iconoComentarios"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_alignLeft="@+id/imagenTienda"
-            android:layout_below="@+id/imagenTienda"
-            android:layout_marginTop="10dp"
-            android:contentDescription="Icono de comentarios"
-            android:src="@drawable/comentarios" />
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/imagenTienda"
-            android:layout_alignTop="@+id/iconoComentarios"
-            android:layout_marginLeft="15dp"
-            android:layout_toRightOf="@+id/iconoComentarios"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
-            android:textSize="10dp" />
-    </RelativeLayout>
-
-</ScrollView>
+</LinearLayout>

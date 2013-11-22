@@ -1,9 +1,9 @@
 package es.daviddiaz.cursoandroid.tarea.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.text.util.Linkify;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,7 +17,7 @@ import es.daviddiaz.cursoandroid.tarea.R;
 import es.daviddiaz.cursoandroid.tarea.dao.CentroComercialDAO;
 import es.daviddiaz.cursoandroid.tarea.dominio.Tienda;
 
-public class DetalleTiendaActivity extends Activity {
+public class DetalleTiendaActivity extends FragmentActivity {
   public final static String ID_TIENDA = "idTienda";
 
   Tienda tienda = null;

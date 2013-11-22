@@ -52,7 +52,7 @@ extends ActionBarActivity {
     drawerOptions = getResources().getStringArray(R.array.drawer_options);
     drawerList.setAdapter(new ArrayAdapter<String>(
         this, 
-        R.layout.drawer_list_item, 
+        R.layout.item_drawer_list, 
         drawerOptions));
     
     drawerList.setItemChecked(0, true);

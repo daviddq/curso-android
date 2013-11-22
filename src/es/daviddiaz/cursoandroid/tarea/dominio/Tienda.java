@@ -1,5 +1,8 @@
 package es.daviddiaz.cursoandroid.tarea.dominio;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Modela la información de una tienda. 
  * 
@@ -15,6 +18,8 @@ public class Tienda {
 	private String email;
 	private int icono;
 	private int fotografia;
+
+  List<String> comentarios = new ArrayList<String>();
 	
 	public Tienda(String nombre, String direccion, String telefono,
 			String[] horarios, String website, String email, int icono,
@@ -82,4 +87,8 @@ public class Tienda {
 	public void setFotografia(int fotografia) {
 		this.fotografia = fotografia;
 	}
+	
+  public List<String> getComentarios() {
+    return comentarios;
+  }
 }

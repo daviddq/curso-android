@@ -1,4 +1,4 @@
-package es.daviddiaz.cursoandroid.tarea;
+package es.daviddiaz.cursoandroid.tarea.dao;
 
 import java.util.ArrayList;
 
