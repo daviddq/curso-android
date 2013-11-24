@@ -76,6 +76,8 @@ implements TabListener {
   public void setContent(int index) {
     Fragment toHide = null;
     Fragment toShow = null;
+    
+    index = Math.min(index, fragments.length-1);
 
     toHide = fragments[indexAnterior];
     toShow = fragments[index];

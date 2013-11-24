@@ -1,6 +1,7 @@
 package es.daviddiaz.cursoandroid.tarea.dominio;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Modela la información de un centro comercial.
@@ -9,9 +10,9 @@ import java.util.ArrayList;
  *
  */
 public class CentroComercial {
-	private ArrayList<Tienda> tiendas = new ArrayList<Tienda>();
+	private List<Tienda> tiendas = new ArrayList<Tienda>();
 
-	public ArrayList<Tienda> getTiendas() {
+	public List<Tienda> getTiendas() {
 		return tiendas;
 	}
 }

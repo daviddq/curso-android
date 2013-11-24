@@ -12,7 +12,10 @@ import es.daviddiaz.cursoandroid.tarea.R;
 import es.daviddiaz.cursoandroid.tarea.dao.CentroComercialDAO;
 import es.daviddiaz.cursoandroid.tarea.dominio.Tienda;
 
-public class DetalleImagenActivity extends FragmentActivity {
+public class DetalleImagenActivity 
+extends FragmentActivity
+implements TiendaProvider
+{
   public final static String ID_TIENDA = "idTienda";
 
   Tienda tienda = null;
@@ -62,5 +65,10 @@ public class DetalleImagenActivity extends FragmentActivity {
     default:
       return super.onOptionsItemSelected(item); 
     }    
+  }
+
+  @Override
+  public Tienda getTienda() {
+    return tienda;
   }
 }

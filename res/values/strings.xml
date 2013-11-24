@@ -7,7 +7,7 @@
     <string name="txt_descripcion_icono">Icono de la tienda</string>
     <string name="txt_titulo_horarios">Horarios:</string>
     <string name="btn_llamar">Llamar</string>
-    <string name="btn_imagen">Mostrar imagen</string>
+    <string name="btn_imagen">Imagen</string>
     <string name="title_activity_image_detail">ImageDetailActivity</string>
     <string name="msg_share">Te comparto la información de la tienda %1$s: %2$s</string>
     <string name="drawer_open">Abrir</string>

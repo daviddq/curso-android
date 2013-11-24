@@ -1,6 +1,6 @@
 package es.daviddiaz.cursoandroid.tarea.dao;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,15 +9,15 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 public abstract class ListAdapter extends BaseAdapter {
-    private ArrayList<?> elementos; 
+    private List<?> elementos; 
     private int R_layout_IdView; 
     private Context contexto;
 
-    public ListAdapter(Context contexto, int R_layout_IdView, ArrayList<?> tiendas) {
+    public ListAdapter(Context contexto, int R_layout_IdView, List<?> list) {
         super();
         
         this.contexto = contexto;
-        this.elementos = tiendas; 
+        this.elementos = list; 
         this.R_layout_IdView = R_layout_IdView; 
     }
 

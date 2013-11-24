@@ -4,6 +4,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <ListView
+        android:id="@+id/listViewComentarios"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8"
+        android:transcriptMode="alwaysScroll"
+        android:stackFromBottom="true">
+    </ListView>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,19 +35,12 @@
             android:inputType="textMultiLine" />
 
         <Button
-            android:id="@+id/taskEditFormBTSave"
+            android:id="@+id/buttonComentarios"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.3"
             android:text="Enviar"
             android:textStyle="bold" />
     </LinearLayout>
-
-    <ListView
-        android:id="@+id/listViewComentarios"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.8" >
-    </ListView>
 
 </LinearLayout>

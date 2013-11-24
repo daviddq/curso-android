@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import es.daviddiaz.cursoandroid.tarea.R;
 import es.daviddiaz.cursoandroid.tarea.dominio.Imagen;
 import es.daviddiaz.cursoandroid.tarea.dominio.RepositorioImagenes;
-import es.daviddiaz.cursoandroid.tarea.dominio.Tienda;
 
 public class RepositorioImagenesDAO {
 	private static RepositorioImagenes imagenes = new RepositorioImagenes();

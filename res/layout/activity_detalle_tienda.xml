@@ -3,106 +3,117 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="5"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin" >
+        android:layout_weight="2" >
 
-        <ImageView
-            android:id="@+id/iconoTienda"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:contentDescription="Icono de la tienda"
-            android:src="@drawable/ic_launcher" />
-
-        <TextView
-            android:id="@+id/nombreTienda"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/iconoTienda"
-            android:layout_toRightOf="@+id/iconoTienda"
-            android:layout_marginLeft="10dp"
-            android:text="[nombre]"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <TextView
-            android:id="@+id/direccionTienda"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/iconoTienda"
-            android:layout_below="@+id/iconoTienda"
-            android:layout_marginTop="10dp"
-            android:text="[direccion]" />
-
-        <TextView
-            android:id="@+id/telefonoTienda"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/direccionTienda"
-            android:layout_below="@+id/direccionTienda"
-            android:text="[telefono]" />
-
-        <TextView
-            android:id="@+id/emailTienda"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/telefonoTienda"
-            android:layout_below="@+id/telefonoTienda"
-            android:text="[email]" />
-
-        <TextView
-            android:id="@+id/siteTienda"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/emailTienda"
-            android:layout_below="@+id/emailTienda"
-            android:text="[site]" />
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/siteTienda"
-            android:layout_below="@+id/siteTienda"
-            android:layout_marginTop="10dp"
-            android:text="@string/txt_titulo_horarios"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/horarioTienda"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/textView1"
-            android:layout_below="@+id/textView1"
-            android:layout_marginTop="10dp"
-            android:text="[horarios]" />
-        
-        <Button
-            android:id="@+id/btnLlamar"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/btnImagen"
-            android:layout_marginTop="10dp"
-            android:text="@string/btn_llamar" />
-        
-        <Button
-            android:id="@+id/btnImagen"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/horarioTienda"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:text="@string/btn_imagen" />
-    </RelativeLayout>
-    
+            android:layout_height="0dp"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin" >
+
+            <ImageView
+                android:id="@+id/iconoTienda"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:contentDescription="Icono de la tienda"
+                android:src="@drawable/ic_launcher" />
+
+            <TextView
+                android:id="@+id/nombreTienda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/iconoTienda"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/iconoTienda"
+                android:text="[nombre]"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <TextView
+                android:id="@+id/direccionTienda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/iconoTienda"
+                android:layout_below="@+id/iconoTienda"
+                android:layout_marginTop="10dp"
+                android:text="[direccion]" />
+
+            <TextView
+                android:id="@+id/telefonoTienda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/direccionTienda"
+                android:layout_below="@+id/direccionTienda"
+                android:text="[telefono]" />
+
+            <TextView
+                android:id="@+id/emailTienda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/telefonoTienda"
+                android:layout_below="@+id/telefonoTienda"
+                android:text="[email]" />
+
+            <TextView
+                android:id="@+id/siteTienda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/emailTienda"
+                android:layout_below="@+id/emailTienda"
+                android:text="[site]" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/siteTienda"
+                android:layout_below="@+id/siteTienda"
+                android:layout_marginTop="10dp"
+                android:text="@string/txt_titulo_horarios"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/horarioTienda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textView1"
+                android:layout_below="@+id/textView1"
+                android:layout_marginTop="10dp"
+                android:text="[horarios]" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/horarioTienda"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/btnLlamar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/btn_llamar" />
+
+                <Button
+                    android:id="@+id/btnImagen"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/btn_imagen" />
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+
     <fragment
         android:id="@+id/fragmentComentarios"
         android:name="es.daviddiaz.cursoandroid.tarea.fragments.ComentariosFragment"
