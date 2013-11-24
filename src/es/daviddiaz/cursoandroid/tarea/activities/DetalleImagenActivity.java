@@ -1,8 +1,15 @@
 package es.daviddiaz.cursoandroid.tarea.activities;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -49,17 +56,21 @@ implements TiendaProvider
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
     case R.id.action_share:
-      if (null!=tienda) {
+      Bitmap bitmap = BitmapFactory.decodeResource(getResources(), tienda.getFotografia());
+      File  outputFile = saveBitmap(bitmap);
+      if (outputFile==null) {
+        Toast.makeText(this, "Error inesperado", Toast.LENGTH_SHORT).show();
+      } else {
+        Uri uriImage = null;
+        uriImage = Uri.fromFile(outputFile);
         Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("image/jpg");
-        intent.putExtra(Intent.EXTRA_STREAM, Uri.parse("android.resource://"
-          + getPackageName() + "/" + tienda.getFotografia()));
-        startActivity(Intent.createChooser(intent,
-          getString(R.string.action_share)));
-      } 
-      return true;
+        intent.setType("image/png");
+        intent.putExtra(Intent.EXTRA_STREAM, uriImage);
+        intent.putExtra("sms_body", "Te envío una imagen de la tienda");
+        startActivity(Intent.createChooser(intent, getString(R.string.action_share)));
+      }
+      return true;    
     case R.id.action_favorite:
-    case 2:
       Toast.makeText(this, "Marcado como favorito", Toast.LENGTH_SHORT).show();
       return true;
     default:
@@ -70,5 +81,26 @@ implements TiendaProvider
   @Override
   public Tienda getTienda() {
     return tienda;
+  }
+
+  private File saveBitmap(Bitmap bmp) {     
+    String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
+    OutputStream outStream = null;
+    String temp="imagen";
+    File file = new File(extStorageDirectory, temp + ".png");
+    if (file.exists()) {
+      file.delete();
+      file = new File(extStorageDirectory, temp + ".png");
+    }
+    try {
+      outStream = new FileOutputStream(file);
+      bmp.compress(Bitmap.CompressFormat.PNG, 100, outStream);
+      outStream.flush();
+      outStream.close();
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
+    return file;
   }
 }
