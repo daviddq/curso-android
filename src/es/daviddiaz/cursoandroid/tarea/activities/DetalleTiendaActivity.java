@@ -68,11 +68,7 @@ implements TiendaProvider
 
         TextView horario = (TextView) findViewById(R.id.horarioTienda);
         if (null != horario) {
-          StringBuffer sb = new StringBuffer();
-          for (String h : tienda.getHorarios()) {
-            sb.append(h + "\r\n");
-          }
-          horario.setText(sb.toString());
+          horario.setText(tienda.getHorarios());
         }
 
         Button botonLlamada = (Button) findViewById(R.id.btnLlamar);

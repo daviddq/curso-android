@@ -13,7 +13,7 @@ public class Tienda {
 	private String nombre;
 	private String direccion;
 	private String telefono;
-	private String[] horarios;
+	private String horarios;
 	private String website;
 	private String email;
 	private int icono;
@@ -22,7 +22,7 @@ public class Tienda {
   List<String> comentarios = new ArrayList<String>();
 	
 	public Tienda(String nombre, String direccion, String telefono,
-			String[] horarios, String website, String email, int icono,
+			String horarios, String website, String email, int icono,
 			int fotografia) {
 		
 		this.nombre = nombre;
@@ -53,10 +53,10 @@ public class Tienda {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
-	public String[] getHorarios() {
+	public String getHorarios() {
 		return horarios;
 	}
-	public void setHorarios(String[] horarios) {
+	public void setHorarios(String horarios) {
 		this.horarios = horarios;
 	}
 	public String getWebsite() {

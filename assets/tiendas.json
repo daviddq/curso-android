@@ -1,0 +1,72 @@
+[
+    {
+        "nombre" : "Tienda de Lego",
+        "direccion" : "Dirección de la tienda de Lego",
+        "telefono" : "+34111222333",
+        "horario" : "Lunes-Viernes: 08:00am - 21:00pm\nSabados: 08:00am - 23:00pm\nDomingos: 08:00am - 14:00pm",
+        "web" : "http://tiendadelego.centrocomercial.com",
+        "email" : "tiendadelego@centrocomercial.com",
+        "icono" : "lego",
+        "imagen" : "legostore",
+        "comentarios" : [
+            {"comentario" : "La tienda de Lego me gusta mucho. Es mi favorita"},
+            {"comentario" : "Es la tienda de lego con mejores precios que conozco."}
+        ]
+    },
+    {
+        "nombre" : "Tienda de Libros",
+        "direccion" : "Dirección de la tienda de Libros",
+        "telefono" : "+34222333444",
+        "horario" : "Lunes-Viernes: 08:00am - 21:00pm\nSabados: 08:00am - 23:00pm\nDomingos: 08:00am - 14:00pm",
+        "web" : "http://tiendadelibros.centrocomercial.com",
+        "email" : "tiendadelibros@centrocomercial.com",
+        "icono" : "libro",
+        "imagen" : "librosstore",
+        "comentarios" : [
+            {"comentario" : "La tienda de libros me gusta mucho. Es mi favorita"},
+            {"comentario" : "Es la tienda de libros con mejores precios que conozco."}
+        ]
+    },
+    {
+        "nombre" : "Tienda de Zapatos",
+        "direccion" : "Dirección de la tienda de Zapatos",
+        "telefono" : "+34333444555",
+        "horario" : "Lunes-Viernes: 08:00am - 21:00pm\nSabados: 08:00am - 23:00pm\nDomingos: 08:00am - 14:00pm",
+        "web" : "http://tiendadezapatos.centrocomercial.com",
+        "email" : "tiendadezapatos@centrocomercial.com",
+        "icono" : "zapatos",
+        "imagen" : "zapatosstore",
+        "comentarios" : [
+            {"comentario" : "La tienda de zapatos me gusta mucho. Es mi favorita"},
+            {"comentario" : "Es la tienda de zapatos con mejores precios que conozco."}
+        ]
+    },
+    {
+        "nombre" : "Tienda de Ropa",
+        "direccion" : "Dirección de la tienda de Ropa",
+        "telefono" : "+34444555666",
+        "horario" : "Lunes-Viernes: 08:00am - 21:00pm\nSabados: 08:00am - 23:00pm\nDomingos: 08:00am - 14:00pm",
+        "web" : "http://tiendaderopa.centrocomercial.com",
+        "email" : "tiendaderopa@centrocomercial.com",
+        "icono" : "ropa",
+        "imagen" : "ropastore",
+        "comentarios" : [
+            {"comentario" : "La tienda de ropa me gusta mucho. Es mi favorita"},
+            {"comentario" : "Es la tienda de ropa con mejores precios que conozco."}
+        ]
+    },
+    {
+        "nombre" : "Tienda de Vinos",
+        "direccion" : "Dirección de la tienda de Vinos",
+        "telefono" : "+35556667776",
+        "horario" : "Lunes-Viernes: 08:00am - 21:00pm\nSabados: 08:00am - 23:00pm\nDomingos: 08:00am - 14:00pm",
+        "web" : "http://tiendadevinos.centrocomercial.com",
+        "email" : "tiendadevinos@centrocomercial.com",
+        "icono" : "vino",
+        "imagen" : "vinosstore",
+        "comentarios" : [
+            {"comentario" : "La tienda de vinos me gusta mucho. Es mi favorita"},
+            {"comentario" : "Es la tienda de vinos con mejores precios que conozco."}
+        ]
+    }
+]
