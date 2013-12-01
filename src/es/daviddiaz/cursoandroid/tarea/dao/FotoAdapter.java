@@ -48,33 +48,23 @@ public class FotoAdapter extends BaseAdapter {
 
   @Override
   public View getView(int position, View convertView, ViewGroup parent) {
-    ViewHolder holder;
-    Foto current = dataArray.get(position);
+    Foto item = dataArray.get(position);
     
     if (null==convertView) {
       convertView = inflater.inflate(R.layout.item_comunidad, null);
-      holder = new ViewHolder();
-      holder.txtDescripcion = (TextView)convertView.findViewById(R.id.text);
-      holder.imgFoto = (NetworkImageView)convertView.findViewById(R.id.image);
-      convertView.setTag(holder);
-    } else {
-      holder = (ViewHolder)convertView.getTag();
     }
     
-    holder.txtDescripcion.setText(current.getDescripcion());
+    TextView txtDescripcion = (TextView)convertView.findViewById(R.id.text);
+    NetworkImageView imgFoto = (NetworkImageView)convertView.findViewById(R.id.image);
     
-    if (null!=current.getBitmap()) {
-      holder.imgFoto.setImageBitmap(current.getBitmap());
+    txtDescripcion.setText(item.getDescripcion());
+    
+    if (null!=item.getBitmap()) {
+      imgFoto.setImageBitmap(item.getBitmap());
     } else {
-      holder.imgFoto.setImageUrl(current.getUrl(), imageLoader );
+      imgFoto.setImageUrl(item.getUrl(), imageLoader );
     }
     
     return convertView;
   }
-  
-  private class ViewHolder {
-    public TextView txtDescripcion;
-    public NetworkImageView imgFoto;
-  }
-
 }

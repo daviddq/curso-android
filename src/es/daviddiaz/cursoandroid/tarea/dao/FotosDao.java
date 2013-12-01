@@ -47,8 +47,8 @@ public class FotosDao {
               new Foto(
                 t.getString("url"),
                 null,
-                t.getString("descripcion"),
-                t.getInt("favoritos")));
+                t.getString("description"),
+                t.getInt("favorites")));
           } 
         } else {
           // Si algo falla al cargar el fichero online lo cargo desde un fichero local
