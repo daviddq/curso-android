@@ -25,6 +25,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -36,14 +37,18 @@ import es.daviddiaz.cursoandroid.tarea.dominio.Foto;
 
 public class ComunidadFragment extends Fragment 
 implements OnClickListener, OnMenuItemClickListener {
-  private static final int RESULT_LOAD_IMAGE = 1;
-  private static final int RESULT_CAMERA = 2;
+  private static final int LOAD_FROM_GALLERY = 1;
+  private static final int LOAD_FROM_CAMERA = 2;
+  
+  private static final int ANCHO_IMAGEN = 640;
+  private static final int ALTO_IMAGEN = 480;
 
   public static RequestQueue requestQueue;
   FotoAdapter fotoAdapter;
   ImageView botonCamara;
   PopupMenu popup;
   String photoPath;
+  ListView listView;
 
   @Override
   public void onActivityCreated(Bundle savedInstanceState) {
@@ -57,40 +62,71 @@ implements OnClickListener, OnMenuItemClickListener {
   public void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
 
-    if (resultCode == Activity.RESULT_OK && data != null) {
-      switch (requestCode) {
-        case RESULT_LOAD_IMAGE:
-          Uri selectedImage = data.getData();
-          String[] filePathColumn = { MediaStore.Images.Media.DATA };
-  
-          Cursor cursor = getActivity().getContentResolver().query(
-              selectedImage, filePathColumn, null, null, null);
-          cursor.moveToFirst();
-  
-          int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-          String picturePath = cursor.getString(columnIndex);
-          cursor.close();
-  
-          String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss",
-              Locale.getDefault())
-          .format(Calendar.getInstance().getTime());
-          Bitmap bitmap = resizeBitmap(picturePath, 640, 480);
-          FotosDao.getFotos().add(new Foto(null, bitmap, timeStamp, 2));
-          fotoAdapter.notifyDataSetChanged();
-          
-  
-//          Intent mediaScanIntent = new Intent("android.intent.action.MEDIA_SCANNER_SCAN_FILE");
-//          File f = new File(photoPath);
-//          Uri contentUri = Uri.fromFile(f);
-//          mediaScanIntent.setData(contentUri);
-//          this.sendBroadcast(mediaScanIntent);              
-//          break;
+    boolean mostrarUltimaImagen = false;
 
-      default:
+    if (resultCode == Activity.RESULT_OK) {
+      switch (requestCode) {
+      case LOAD_FROM_GALLERY:
+        if (null!=data) {
+          cargarImagenDesdeGaleria(data);
+          mostrarUltimaImagen = true;
+        } else {
+          Toast.makeText(getActivity(), "Error retrieving image",
+              Toast.LENGTH_SHORT).show();
+        }
+        break;
+
+      case LOAD_FROM_CAMERA:
+        cargarImagenDesdeCamara();
+        mostrarUltimaImagen = true;
         break;
       }
+
+      if (mostrarUltimaImagen) {
+        listView.post(new Runnable() {
+          @Override
+          public void run() {
+            // Select the last row so it will scroll into view...
+            listView.setSelection(fotoAdapter.getCount() - 1);
+          }
+        });
+      }
     }
-  }   
+  }
+
+  private void cargarImagenDesdeGaleria(Intent data) {
+    Uri selectedImage = data.getData();
+    String[] filePathColumn = { MediaStore.Images.Media.DATA };
+
+    Cursor cursor = getActivity().getContentResolver().query(
+        selectedImage, filePathColumn, null, null, null);
+    cursor.moveToFirst();
+
+    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+    String picturePath = cursor.getString(columnIndex);
+    cursor.close();
+
+    String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss",
+        Locale.getDefault())
+    .format(Calendar.getInstance().getTime());
+    Bitmap bitmap = resizeBitmap(picturePath, ANCHO_IMAGEN, ALTO_IMAGEN);
+    FotosDao.getFotos().add(new Foto(null, bitmap, timeStamp, 2));
+    fotoAdapter.notifyDataSetChanged();
+  }
+  
+  private void cargarImagenDesdeCamara() {
+    String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", 
+      Locale.getDefault()).format(Calendar.getInstance().getTime());
+    Bitmap bitmap = resizeBitmap(photoPath, ANCHO_IMAGEN, ALTO_IMAGEN);
+    FotosDao.getFotos().add(new Foto(null, bitmap, timeStamp, 2));
+    fotoAdapter.notifyDataSetChanged();    
+
+    Intent mediaScanIntent = new Intent("android.intent.action.MEDIA_SCANNER_SCAN_FILE");
+    File f = new File(photoPath);
+    Uri contentUri = Uri.fromFile(f);
+    mediaScanIntent.setData(contentUri);
+    getActivity().sendBroadcast(mediaScanIntent);
+  }
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -100,9 +136,9 @@ implements OnClickListener, OnMenuItemClickListener {
 
     View view = inflater.inflate(R.layout.fragment_comunidad, container, false);
     botonCamara = (ImageView)view.findViewById(R.id.imageView);
-    ListView list = (ListView)view.findViewById(R.id.listView);
+    listView = (ListView)view.findViewById(R.id.listView);
     fotoAdapter = new FotoAdapter(getActivity(), FotosDao.getFotos());
-    list.setAdapter(fotoAdapter);
+    listView.setAdapter(fotoAdapter);
     popup = new PopupMenu(getActivity(), botonCamara);
     popup.getMenuInflater().inflate(R.menu.menu_foto , popup.getMenu());
     return view; 
@@ -115,30 +151,23 @@ implements OnClickListener, OnMenuItemClickListener {
 
   @Override
   public boolean onMenuItemClick(MenuItem item) {
+    Intent i;
     switch (item.getItemId()) {
     case R.id.galeria:
-      tomarFotoDeGaleria();
+      i = new Intent(
+          Intent.ACTION_PICK, 
+          android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+      startActivityForResult(i, LOAD_FROM_GALLERY);
       break;
     case R.id.camara:
-      tomarFotoDeCamara();
+      File photo = setUpFile();
+      photoPath = photo.getAbsolutePath();
+      i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+      i.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, Uri.fromFile(photo));
+      startActivityForResult(i, LOAD_FROM_CAMERA);
       break;
     }
     return false;
-  }
-
-  private void tomarFotoDeGaleria() {
-    Intent i = new Intent(
-        Intent.ACTION_PICK, 
-        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-    startActivityForResult(i, RESULT_LOAD_IMAGE);
-  }
-
-  private void tomarFotoDeCamara() {
-    File photo = setUpFile();
-    photoPath = photo.getAbsolutePath();
-    Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-    i.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, Uri.fromFile(photo));
-    startActivityForResult(i, RESULT_CAMERA);
   }
 
   private Bitmap resizeBitmap(String photoPath, int targetW, int targetH) {

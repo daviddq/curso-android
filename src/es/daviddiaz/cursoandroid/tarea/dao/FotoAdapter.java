@@ -64,6 +64,7 @@ public class FotoAdapter extends BaseAdapter {
     } else {
       imgFoto.setImageUrl(item.getUrl(), imageLoader );
     }
+    imgFoto.invalidate();
     
     return convertView;
   }
