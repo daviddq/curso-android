@@ -18,7 +18,7 @@ import es.daviddiaz.cursoandroid.tarea.dominio.CentroComercial;
 import es.daviddiaz.cursoandroid.tarea.dominio.Tienda;
 import es.daviddiaz.cursoandroid.tarea.helpers.AssetsHelper;
 
-public class CentroComercialDAO {
+public class CentroComercialDao {
   private static CentroComercial centroComercial = new CentroComercial();
   private static boolean inicializado = false;
 
@@ -26,7 +26,7 @@ public class CentroComercialDAO {
     if (inicializado)
       return;
     
-    cargarTiendasDesdeParse(context);
+    cargarDesdeParse(context);
 
     inicializado = true;
   }
@@ -35,7 +35,7 @@ public class CentroComercialDAO {
     return centroComercial.getTiendas();
   }
   
-  private static void cargarTiendasDesdeParse(final Context context) {
+  private static void cargarDesdeParse(final Context context) {
     Parse.initialize(context, "DegLJPhYU4HZxoQLtvOmwb4kBw37ck4CnBG3IiPK", "oF2nL8zBtUzNev406WBv2XUnWz5LupElH7H4Gutt");
     ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("tienda");
     query.findInBackground(new FindCallback<ParseObject>() {

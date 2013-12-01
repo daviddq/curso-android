@@ -1,5 +1,7 @@
 package es.daviddiaz.cursoandroid.tarea.activities;
 
+import com.android.volley.RequestQueue;
+
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -15,7 +17,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import es.daviddiaz.cursoandroid.tarea.R;
-import es.daviddiaz.cursoandroid.tarea.dao.CentroComercialDAO;
+import es.daviddiaz.cursoandroid.tarea.dao.CentroComercialDao;
+import es.daviddiaz.cursoandroid.tarea.dao.FotoAdapter;
+import es.daviddiaz.cursoandroid.tarea.dao.FotosDao;
 import es.daviddiaz.cursoandroid.tarea.fragments.ComunidadFragment;
 import es.daviddiaz.cursoandroid.tarea.fragments.ImagenesFragment;
 import es.daviddiaz.cursoandroid.tarea.fragments.TiendasFragment;
@@ -44,7 +48,8 @@ extends ActionBarActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    CentroComercialDAO.Inicializar(this);
+    CentroComercialDao.Inicializar(this);
+    FotosDao.Inicializar(this);
     
     drawerLayout = (DrawerLayout)findViewById(R.id.drawerLayout);
     drawerList = (ListView)findViewById(R.id.left_drawer);

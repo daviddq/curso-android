@@ -13,7 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import es.daviddiaz.cursoandroid.tarea.R;
 import es.daviddiaz.cursoandroid.tarea.activities.DetalleTiendaActivity;
-import es.daviddiaz.cursoandroid.tarea.dao.CentroComercialDAO;
+import es.daviddiaz.cursoandroid.tarea.dao.CentroComercialDao;
 import es.daviddiaz.cursoandroid.tarea.dao.ListAdapter;
 import es.daviddiaz.cursoandroid.tarea.dominio.Tienda;
 
@@ -27,7 +27,7 @@ public class ListadoTiendasFragment extends Fragment {
     ListAdapter adapter = new ListAdapter(
         this.getActivity(),
         R.layout.item_list_view,
-        CentroComercialDAO.getTiendas()
+        CentroComercialDao.getTiendas()
         ) {
       @Override
       public void onEntrada(Object entrada, View view) {

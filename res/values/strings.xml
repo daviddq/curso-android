@@ -12,6 +12,9 @@
     <string name="msg_share">Te comparto la información de la tienda %1$s: %2$s</string>
     <string name="drawer_open">Abrir</string>
     <string name="drawer_close">Cerrar</string>
+    <string name="placeholder">*******</string>
+    <string name="desde_galeria">De la galería</string>
+    <string name="desde_camara">De la cámara</string>
 
     <string-array name="drawer_options">
         <item>Imágenes</item>

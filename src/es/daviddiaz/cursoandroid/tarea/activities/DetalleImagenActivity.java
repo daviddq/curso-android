@@ -16,7 +16,7 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.Toast;
 import es.daviddiaz.cursoandroid.tarea.R;
-import es.daviddiaz.cursoandroid.tarea.dao.CentroComercialDAO;
+import es.daviddiaz.cursoandroid.tarea.dao.CentroComercialDao;
 import es.daviddiaz.cursoandroid.tarea.dominio.Tienda;
 
 public class DetalleImagenActivity 
@@ -37,7 +37,7 @@ implements TiendaProvider
     indiceTienda = intent.getIntExtra(ID_TIENDA, -1);
 
     if (indiceTienda!=-1) {
-      tienda = CentroComercialDAO.getTiendas().get(indiceTienda);
+      tienda = CentroComercialDao.getTiendas().get(indiceTienda);
       if (null!=tienda) {
         ImageView imagen = (ImageView) findViewById(R.id.imagenTienda);
         if (null != imagen)
