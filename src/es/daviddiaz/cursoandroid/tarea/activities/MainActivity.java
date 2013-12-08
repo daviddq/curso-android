@@ -22,7 +22,8 @@ import es.daviddiaz.cursoandroid.tarea.fragments.ImagenesFragment;
 import es.daviddiaz.cursoandroid.tarea.fragments.TiendasFragment;
 
 public class MainActivity 
-extends ActionBarActivity {
+  extends ActionBarActivity 
+{
   private ListView drawerList;
   private DrawerLayout drawerLayout;
   private String[] drawerOptions;
@@ -31,6 +32,7 @@ extends ActionBarActivity {
   static final int INDEX_IMAGENES = 0;
   static final int INDEX_TIENDAS = 1;
   static final int INDEX_COMUNIDAD = 2;
+  static final int CONNECTION_FAILURE_REQUEST = 9000;
   
   int indexAnterior = 0;
 
@@ -95,34 +97,6 @@ extends ActionBarActivity {
     setContent(0);
   }
   
-  public void setContent(int index) {
-    Fragment toHide = null;
-    Fragment toShow = null;
-    
-    final ActionBar bar = getSupportActionBar();
-    bar.setTitle(drawerOptions[index]);
-    
-    toHide = fragments[indexAnterior];
-    toShow = fragments[index];
-
-    if (index==INDEX_TIENDAS) {
-      bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-    } else {
-      bar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-    }
-
-    getSupportFragmentManager()
-      .beginTransaction()
-      .hide(toHide)
-      .show(toShow)
-      .commit();
-
-    drawerList.setItemChecked(index, true);
-    drawerLayout.closeDrawer(drawerList);
-    
-    indexAnterior = index;
-  }
-  
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     if (item.getItemId() == android.R.id.home) {
@@ -154,5 +128,33 @@ extends ActionBarActivity {
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long arg3) {
       setContent(position);
     }
+  }
+  
+  private void setContent(int index) {
+    Fragment toHide = null;
+    Fragment toShow = null;
+    
+    final ActionBar bar = getSupportActionBar();
+    bar.setTitle(drawerOptions[index]);
+    
+    toHide = fragments[indexAnterior];
+    toShow = fragments[index];
+
+    if (index==INDEX_TIENDAS) {
+      bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+    } else {
+      bar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+    }
+
+    getSupportFragmentManager()
+      .beginTransaction()
+      .hide(toHide)
+      .show(toShow)
+      .commit();
+
+    drawerList.setItemChecked(index, true);
+    drawerLayout.closeDrawer(drawerList);
+    
+    indexAnterior = index;
   }
 }
