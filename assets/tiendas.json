@@ -11,7 +11,9 @@
         "comentarios" : [
             {"comentario" : "La tienda de Lego me gusta mucho. Es mi favorita"},
             {"comentario" : "Es la tienda de lego con mejores precios que conozco."}
-        ]
+        ],
+        "latitud" : 38.34504,
+        "longitud" : -0.47947
     },
     {
         "nombre" : "Tienda de Libros",
@@ -25,7 +27,9 @@
         "comentarios" : [
             {"comentario" : "La tienda de libros me gusta mucho. Es mi favorita"},
             {"comentario" : "Es la tienda de libros con mejores precios que conozco."}
-        ]
+        ],
+        "latitud" : 38.34529,
+        "longitud" : -0.47965
     },
     {
         "nombre" : "Tienda de Zapatos",
@@ -39,7 +43,9 @@
         "comentarios" : [
             {"comentario" : "La tienda de zapatos me gusta mucho. Es mi favorita"},
             {"comentario" : "Es la tienda de zapatos con mejores precios que conozco."}
-        ]
+        ],
+        "latitud" : 38.34541,
+        "longitud" : -0.47942
     },
     {
         "nombre" : "Tienda de Ropa",
@@ -53,7 +59,9 @@
         "comentarios" : [
             {"comentario" : "La tienda de ropa me gusta mucho. Es mi favorita"},
             {"comentario" : "Es la tienda de ropa con mejores precios que conozco."}
-        ]
+        ],
+        "latitud" : 38.34563,
+        "longitud" : -0.47897
     },
     {
         "nombre" : "Tienda de Vinos",
@@ -67,6 +75,8 @@
         "comentarios" : [
             {"comentario" : "La tienda de vinos me gusta mucho. Es mi favorita"},
             {"comentario" : "Es la tienda de vinos con mejores precios que conozco."}
-        ]
+        ],
+        "latitud" : 38.34554,
+        "longitud" : -0.47865
     }
 ]

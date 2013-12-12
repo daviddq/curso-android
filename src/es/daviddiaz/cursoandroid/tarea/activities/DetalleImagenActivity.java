@@ -85,15 +85,12 @@ implements TiendaProvider
 
   private File saveBitmap(Bitmap bmp) {     
     String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
-    OutputStream outStream = null;
-    String temp="imagen";
-    File file = new File(extStorageDirectory, temp + ".png");
-    if (file.exists()) {
-      file.delete();
-      file = new File(extStorageDirectory, temp + ".png");
-    }
+    File file = new File(extStorageDirectory, "imagen.png");
     try {
-      outStream = new FileOutputStream(file);
+      if (file.exists()) {
+        file.delete();
+      }
+      OutputStream outStream = new FileOutputStream(file);
       bmp.compress(Bitmap.CompressFormat.PNG, 100, outStream);
       outStream.flush();
       outStream.close();

@@ -3,6 +3,8 @@ package es.daviddiaz.cursoandroid.tarea.dominio;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.android.gms.maps.model.LatLng;
+
 /**
  * Modela la información de una tienda. 
  * 
@@ -18,21 +20,23 @@ public class Tienda {
 	private String email;
 	private int icono;
 	private int fotografia;
+	private LatLng location;
 
   List<String> comentarios = new ArrayList<String>();
 	
 	public Tienda(String nombre, String direccion, String telefono,
 			String horarios, String website, String email, int icono,
-			int fotografia) {
+			int fotografia, double latitud, double longitud) {
 		
-		this.nombre = nombre;
-		this.direccion = direccion;
-		this.telefono = telefono;
-		this.horarios = horarios;
-		this.website = website;
-		this.email = email;
-		this.icono = icono;
-		this.fotografia = fotografia;
+	  setNombre(nombre);
+	  setDireccion(direccion);
+	  setTelefono(telefono);
+	  setHorarios(horarios);
+	  setWebsite(website);
+	  setEmail(email);
+	  setIcono(icono);
+	  setFotografia(fotografia);
+	  setLocation(latitud, longitud);
 	}
 
 	public String getNombre() {
@@ -84,11 +88,19 @@ public class Tienda {
 		return fotografia;
 	}
 
-	public void setFotografia(int fotografia) {
-		this.fotografia = fotografia;
-	}
-	
+  public void setFotografia(int fotografia) {
+    this.fotografia = fotografia;
+  }
+  
   public List<String> getComentarios() {
     return comentarios;
+  }
+  
+  public void setLocation(double latitud, double longitud) {
+    this.location = new LatLng(latitud, longitud);
+  }
+  
+  public LatLng getLocation() {
+    return location;
   }
 }

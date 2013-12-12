@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.util.Log;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.parse.FindCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
@@ -26,7 +27,8 @@ public class CentroComercialDao {
     if (inicializado)
       return;
     
-    cargarDesdeParse(context);
+//    cargarDesdeParse(context);
+    cargarDesdeFicheroLocal(context);
 
     inicializado = true;
   }
@@ -52,7 +54,9 @@ public class CentroComercialDao {
                 t.getString("web"),
                 t.getString("email"),
                 context.getResources().getIdentifier(t.getString("icono"), "drawable", context.getPackageName()),
-                context.getResources().getIdentifier(t.getString("imagen"), "drawable", context.getPackageName())));
+                context.getResources().getIdentifier(t.getString("imagen"), "drawable", context.getPackageName()),
+                t.getNumber("latitud").doubleValue(),
+                t.getNumber("longitud").doubleValue()));
           } 
         } else {
           // Si algo falla al cargar el fichero online lo cargo desde un fichero local
@@ -81,7 +85,9 @@ public class CentroComercialDao {
               t.getString("web"),
               t.getString("email"),
               context.getResources().getIdentifier(t.getString("icono"), "drawable", context.getPackageName()),
-              context.getResources().getIdentifier(t.getString("imagen"), "drawable", context.getPackageName())));
+              context.getResources().getIdentifier(t.getString("imagen"), "drawable", context.getPackageName()),
+              t.getDouble("latitud"),
+              t.getDouble("longitud")));
         } catch (Exception e) {
           Log.e("TAG", "Error parseando tienda", e);
         }

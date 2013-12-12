@@ -45,9 +45,6 @@ public class MainActivity
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-
-    CentroComercialDao.Inicializar(this);
-    FotosDao.Inicializar(this);
     
     drawerLayout = (DrawerLayout)findViewById(R.id.drawerLayout);
     drawerList = (ListView)findViewById(R.id.left_drawer);
