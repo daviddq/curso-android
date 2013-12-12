@@ -29,10 +29,15 @@ implements
     new MapaFragment()
   };
 
-  static final int LISTADO = 0;
-  static final int MAPA = 1;
+  public static final int TAB_LISTADO = 0;
+  public static final int TAB_MAPA = 1;
+  
+  int tabActual = TAB_LISTADO;
 
-  int indexAnterior = 0;
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+  }
 
   @Override
   public void onActivityCreated(Bundle savedInstanceState) {
@@ -52,8 +57,8 @@ implements
 
     getActivity().getSupportFragmentManager()
     .beginTransaction()
-    .add(R.id.mainContent, fragments[LISTADO])
-    .add(R.id.mainContent, fragments[MAPA])
+    .add(R.id.mainContent, fragments[TAB_LISTADO])
+    .add(R.id.mainContent, fragments[TAB_MAPA])
     .commit();
   }
 
@@ -82,31 +87,48 @@ implements
     setContent(tab.getPosition());
   }
 
-  private void setContent(int index) {
+  private void setContent(int tabIndex) {
+    tabIndex = Math.min(tabIndex, fragments.length-1);
+    
+    int tabAnterior = tabActual;
+    setTabActual(tabIndex);
+    
     Fragment toHide = null;
     Fragment toShow = null;
 
-    index = Math.min(index, fragments.length-1);
-
-    toHide = fragments[indexAnterior];
-    toShow = fragments[index];
+    toHide = fragments[tabAnterior];
+    toShow = fragments[tabActual];
+    
+    switch (tabActual) {
+      case TAB_MAPA:
+        setMapMenuEnabled(true);
+        break;
+      default:
+        setMapMenuEnabled(false);
+        break;
+    }
 
     getActivity().getSupportFragmentManager()
     .beginTransaction()
     .hide(toHide)
     .show(toShow)
     .commit();
-
-    indexAnterior = index;
+  }
+  
+  public void setMapMenuEnabled(boolean enabled) {
+    if (enabled && tabActual==TAB_MAPA) {
+      fragments[TAB_MAPA].setHasOptionsMenu(true);
+    } else {
+      fragments[TAB_MAPA].setHasOptionsMenu(false);
+    }
   }
 
   private void establecerVisibilidad() {
     FragmentManager manager = getActivity().getSupportFragmentManager();
-
     if (googlePlayDisponible()) {
-      manager.beginTransaction().show(fragments[MAPA]).commit();
+      manager.beginTransaction().show(fragments[TAB_MAPA]).commit();
     } else {
-      manager.beginTransaction().hide(fragments[MAPA]).commit();
+      manager.beginTransaction().hide(fragments[TAB_MAPA]).commit();
     }
     
   }
@@ -128,5 +150,13 @@ implements
       }
       return false;
     }
+  }
+  
+  private void setTabActual(int tabActual) {
+    this.tabActual = tabActual;
+  }
+
+  public int getTabActual() {
+    return tabActual;
   }
 }

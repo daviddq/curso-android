@@ -5,6 +5,9 @@ import android.content.IntentSender;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient.ConnectionCallbacks;
@@ -15,6 +18,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+
+import es.daviddiaz.cursoandroid.tarea.R;
 
 public class MapaFragment 
 extends 
@@ -36,6 +41,12 @@ implements
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     this.savedInstanceState = savedInstanceState;
+}
+  
+  @Override
+  public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    inflater.inflate(R.menu.menu_mapa, menu);
+    super.onCreateOptionsMenu(menu, inflater);
   }
   
   @Override
@@ -73,6 +84,29 @@ implements
         errorFragment.show(getActivity().getSupportFragmentManager(), "dialog");
       }
     }
+  }
+  
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    if (null==map) {
+      return false;
+    }
+    
+    switch (item.getItemId()) {
+      case R.id.mapaNormal:
+        map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        break;
+      case R.id.mapaSatelital:
+        map.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+        break;
+      case R.id.mapaHibrido:
+        map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        break;
+      case R.id.mapaTerreno:
+        map.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+        break;
+    }
+    return super.onOptionsItemSelected(item);
   }
   
   @Override

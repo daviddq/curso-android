@@ -1247,6 +1247,10 @@ containing a value of this type.
         public static final int listViewTiendas=0x7f060056;
         public static final int list_item=0x7f06002c;
         public static final int mainContent=0x7f060057;
+        public static final int mapaHibrido=0x7f060060;
+        public static final int mapaNormal=0x7f06005e;
+        public static final int mapaSatelital=0x7f06005f;
+        public static final int mapaTerreno=0x7f060061;
         public static final int middle=0x7f060015;
         public static final int never=0x7f06000d;
         public static final int nombreTienda=0x7f060042;
@@ -1354,6 +1358,7 @@ containing a value of this type.
     public static final class menu {
         public static final int main=0x7f0d0000;
         public static final int menu_foto=0x7f0d0001;
+        public static final int menu_mapa=0x7f0d0002;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1503,6 +1508,7 @@ containing a value of this type.
         public static final int hello_world=0x7f070037;
         public static final int msg_share=0x7f07002f;
         public static final int placeholder=0x7f070032;
+        public static final int title_activity_borrar=0x7f070039;
         public static final int title_activity_image_detail=0x7f07002e;
         public static final int title_activity_main=0x7f070035;
         public static final int title_activity_main_activity2=0x7f070038;

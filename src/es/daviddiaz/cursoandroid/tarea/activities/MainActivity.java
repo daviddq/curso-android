@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -61,13 +60,9 @@ public class MainActivity
     drawerList.setItemChecked(0, true);
     drawerList.setOnItemClickListener(new DrawerItemClickListener());
     
-    drawerToggle = new ActionBarDrawerToggle(
-        this, 
-        drawerLayout, 
-        R.drawable.ic_drawer_am, 
-        R.string.drawer_open,
-        R.string.drawer_close) {
-      
+    drawerToggle = new ActionBarDrawerToggle(this, drawerLayout,
+        R.drawable.ic_drawer_am, R.string.drawer_open, R.string.drawer_close) 
+    {
       public void onDrawerClosed(View view) {
         ActivityCompat.invalidateOptionsMenu(MainActivity.this);
       }
@@ -83,8 +78,7 @@ public class MainActivity
     actionBar.setDisplayHomeAsUpEnabled(true);
     actionBar.setHomeButtonEnabled(true);
 
-    FragmentManager manager = getSupportFragmentManager();
-    manager
+    getSupportFragmentManager()
       .beginTransaction()
       .add(R.id.contentFrame, fragments[INDEX_IMAGENES])
       .hide(fragments[INDEX_IMAGENES])
@@ -93,7 +87,6 @@ public class MainActivity
       .add(R.id.contentFrame, fragments[INDEX_COMUNIDAD])
       .hide(fragments[INDEX_COMUNIDAD])
       .commit();
-
     setContent(0);
   }
   
@@ -142,8 +135,10 @@ public class MainActivity
 
     if (index==INDEX_TIENDAS) {
       bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+      ((TiendasFragment)fragments[INDEX_TIENDAS]).setMapMenuEnabled(true);
     } else {
       bar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+      ((TiendasFragment)fragments[INDEX_TIENDAS]).setMapMenuEnabled(false);
     }
 
     getSupportFragmentManager()

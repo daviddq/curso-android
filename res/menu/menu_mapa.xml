@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/mapaNormal"
+        android:showAsAction="always"
+        android:title="Normal"/>
+    <item
+        android:id="@+id/mapaSatelital"
+        android:showAsAction="always"
+        android:title="Satelital"/>
+    <item
+        android:id="@+id/mapaHibrido"
+        android:showAsAction="always"
+        android:title="Hibrido"/>
+    <item
+        android:id="@+id/mapaTerreno"
+        android:showAsAction="always"
+        android:title="Terreno"/>
+
+</menu>
