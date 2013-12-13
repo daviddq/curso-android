@@ -1,5 +1,8 @@
 package es.daviddiaz.cursoandroid.tarea.fragments;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -25,6 +28,7 @@ implements OnClickListener {
   ListView list;
   Tienda tienda;
   ListAdapter adapter;
+  List<Comentario> comentarios = new ArrayList<Comentario>();
 
   @Override
   public void onActivityCreated(Bundle savedInstanceState) {
@@ -34,18 +38,21 @@ implements OnClickListener {
     tienda = ((TiendaProvider)getActivity()).getTienda();
     button.setOnClickListener(this);
     
+    obtenerComentarios();
+
     adapter = new ListAdapter(
         getActivity(),
         R.layout.item_comentario,
-        ComentariosDao.getComentarios()) {
+        comentarios) {
 
       @Override
       public void onEntrada(Object entrada, View view) {
         if (entrada != null) {
-          String comentario = (String)entrada;
           TextView texto = (TextView)view.findViewById(R.id.textComentario);
-          if (null!=texto)
-            texto.setText(comentario);
+          if (null!=texto) {
+            Comentario comentario = (Comentario)entrada;
+            texto.setText(comentario.getTexto());
+          }
         }
       }
     };
@@ -53,6 +60,11 @@ implements OnClickListener {
     list.setAdapter(adapter);
   }
   
+  private void obtenerComentarios() {
+    comentarios.clear();
+    comentarios.addAll(ComentariosDao.obtenerComentariosDeTienda(tienda.getId()));
+  }
+
   @Override
   public void onResume() {
     super.onResume();
@@ -77,9 +89,10 @@ implements OnClickListener {
       Comentario c = new Comentario();
       c.setTiendaId(tienda.getId());
       c.setTexto(editText.getText().toString());
-      ComentariosDao.getComentarios().add(c);
-      adapter.notifyDataSetChanged();
+      ComentariosDao.agregarComentario(getActivity(), c);
+      obtenerComentarios();
       editText.setText("");
+      adapter.notifyDataSetChanged();
     }
   }
 }

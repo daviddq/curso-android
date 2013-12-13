@@ -40,6 +40,7 @@ public class DBHelper extends SQLiteOpenHelper {
   private final static String CREATE_COMENTARIOS = "CREATE TABLE " +
       COMENTARIOS_TABLE + "(" + 
       FIELD_ID + " integer primary key autoincrement, " +
+      FIELD_TIENDA_ID + " integer, " +
       FIELD_TEXTO + " text)";
 
   public DBHelper(Context context, String name, CursorFactory factory, 

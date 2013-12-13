@@ -91,6 +91,7 @@ public class CentroComercialDao {
         try {
           JSONObject t = (JSONObject)jTiendas.get(i);
           Tienda tienda = new Tienda();
+          tienda.setId(t.getInt("id"));
           tienda.setNombre(t.getString("nombre"));
           tienda.setDireccion(t.getString("direccion"));
           tienda.setTelefono(t.getString("telefono"));

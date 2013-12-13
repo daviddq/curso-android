@@ -1,12 +1,80 @@
 [
     {
         "id" : 1,
-        "tiendaId" : 1,
-        "texto" : "La tienda de Lego me gusta mucho. Es mi favorita"
+        "nombre" : "Tienda de Lego",
+        "direccion" : "Dirección de la tienda de Lego",
+        "telefono" : "+34111222333",
+        "horario" : "Lunes-Viernes: 08:00am - 21:00pm\nSabados: 08:00am - 23:00pm\nDomingos: 08:00am - 14:00pm",
+        "web" : "http://tiendadelego.centrocomercial.com",
+        "email" : "tiendadelego@centrocomercial.com",
+        "icono" : "lego",
+        "imagen" : "legostore",
+        "latitud" : 38.34504,
+        "longitud" : -0.47947
     },
     {
         "id" : 2,
-        "tiendaId" : 1,
-        "texto" : "Es la tienda de lego con mejores precios que conozco."
+        "nombre" : "Tienda de Libros",
+        "direccion" : "Dirección de la tienda de Libros",
+        "telefono" : "+34222333444",
+        "horario" : "Lunes-Viernes: 08:00am - 21:00pm\nSabados: 08:00am - 23:00pm\nDomingos: 08:00am - 14:00pm",
+        "web" : "http://tiendadelibros.centrocomercial.com",
+        "email" : "tiendadelibros@centrocomercial.com",
+        "icono" : "libro",
+        "imagen" : "librosstore",
+        "latitud" : 38.34529,
+        "longitud" : -0.47965
+    },
+    {
+        "id" : 3,
+        "nombre" : "Tienda de Zapatos",
+        "direccion" : "Dirección de la tienda de Zapatos",
+        "telefono" : "+34333444555",
+        "horario" : "Lunes-Viernes: 08:00am - 21:00pm\nSabados: 08:00am - 23:00pm\nDomingos: 08:00am - 14:00pm",
+        "web" : "http://tiendadezapatos.centrocomercial.com",
+        "email" : "tiendadezapatos@centrocomercial.com",
+        "icono" : "zapatos",
+        "imagen" : "zapatosstore",
+        "latitud" : 38.34541,
+        "longitud" : -0.47942
+    },
+    {
+        "id" : 4,
+        "nombre" : "Tienda de Ropa",
+        "direccion" : "Dirección de la tienda de Ropa",
+        "telefono" : "+34444555666",
+        "horario" : "Lunes-Viernes: 08:00am - 21:00pm\nSabados: 08:00am - 23:00pm\nDomingos: 08:00am - 14:00pm",
+        "web" : "http://tiendaderopa.centrocomercial.com",
+        "email" : "tiendaderopa@centrocomercial.com",
+        "icono" : "ropa",
+        "imagen" : "ropastore",
+        "latitud" : 38.34563,
+        "longitud" : -0.47897
+    },
+    {
+        "id" : 5,
+        "nombre" : "Tienda de Vinos",
+        "direccion" : "Dirección de la tienda de Vinos",
+        "telefono" : "+35556667776",
+        "horario" : "Lunes-Viernes: 08:00am - 21:00pm\nSabados: 08:00am - 23:00pm\nDomingos: 08:00am - 14:00pm",
+        "web" : "http://tiendadevinos.centrocomercial.com",
+        "email" : "tiendadevinos@centrocomercial.com",
+        "icono" : "vino",
+        "imagen" : "vinosstore",
+        "latitud" : 38.34554,
+        "longitud" : -0.47865
+    },
+    {
+        "id" : 6,
+        "nombre" : "Tienda de Juegos",
+        "direccion" : "Dirección de la tienda de juegos",
+        "telefono" : "+34777888999",
+        "horario" : "Lunes-Viernes: 08:00am - 21:00pm\nSabados: 08:00am - 23:00pm\nDomingos: 08:00am - 14:00pm",
+        "web" : "http://tiendadejuegos.centrocomercial.com",
+        "email" : "tiendadejuegos@centrocomercial.com",
+        "icono" : "juegos",
+        "imagen" : "juegosstore",
+        "latitud" : 38.34504,
+        "longitud" : -0.47947
     }    
 ]

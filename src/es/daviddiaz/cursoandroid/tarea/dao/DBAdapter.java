@@ -12,7 +12,7 @@ import es.daviddiaz.cursoandroid.tarea.dominio.Tienda;
 public class DBAdapter {
   private DBHelper dbHelper;
   private static final String DATABASE_NAME = "centrocomercial.db";
-  private static final int DATABASE_VERSION = 2;
+  private static final int DATABASE_VERSION = 3;
 
   public DBAdapter (Context context) {
     dbHelper = new DBHelper(context, DATABASE_NAME, null, DATABASE_VERSION);

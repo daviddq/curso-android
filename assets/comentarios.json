@@ -6,7 +6,27 @@
     },
     {
         "id" : 2,
-        "tiendaId" : 1,
-        "texto" : "Es la tienda de lego con mejores precios que conozco."
-    }    
+        "tiendaId" : 2,
+        "texto" : "La tienda de Libros me gusta mucho. Es mi favorita"
+    },
+    {
+        "id" : 3,
+        "tiendaId" : 3,
+        "texto" : "La tienda de Zapatos me gusta mucho. Es mi favorita"
+    },
+    {
+        "id" : 4,
+        "tiendaId" : 4,
+        "texto" : "La tienda de Ropa me gusta mucho. Es mi favorita"
+    },
+    {
+        "id" : 5,
+        "tiendaId" : 5,
+        "texto" : "La tienda de Vinos me gusta mucho. Es mi favorita"
+    },
+    {
+        "id" : 6,
+        "tiendaId" : 6,
+        "texto" : "La tienda de Juegos me gusta mucho. Es mi favorita"
+    }
 ]

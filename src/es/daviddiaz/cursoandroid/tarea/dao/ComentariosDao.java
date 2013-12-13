@@ -47,8 +47,24 @@ public class ComentariosDao {
       return false;
     }
   }
+  
+  public static List<Comentario> obtenerComentariosDeTienda(int idTienda) {
+    List<Comentario> comentarios = new ArrayList<Comentario>();
+    for (Comentario c : ComentariosDao.getComentarios()) {
+      if (c.getTiendaId()==idTienda) {
+        comentarios.add(c);
+      }
+    }
+    return comentarios;
+  }
+  
+  public static void agregarComentario(Context context, Comentario comentario) {
+    getComentarios().add(comentario);
+    DBAdapter db = new DBAdapter(context);
+    db.insert(comentario);
+  }
 
-  public static List<Comentario> getComentarios() {
+  private static List<Comentario> getComentarios() {
     return comentarios;
   }
   
