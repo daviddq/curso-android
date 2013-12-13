@@ -1,0 +1,12 @@
+[
+    {
+        "id" : 1,
+        "tiendaId" : 1,
+        "texto" : "La tienda de Lego me gusta mucho. Es mi favorita"
+    },
+    {
+        "id" : 2,
+        "tiendaId" : 1,
+        "texto" : "Es la tienda de lego con mejores precios que conozco."
+    }    
+]
