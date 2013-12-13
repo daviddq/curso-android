@@ -12,8 +12,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import es.daviddiaz.cursoandroid.tarea.R;
 import es.daviddiaz.cursoandroid.tarea.activities.TiendaProvider;
-import es.daviddiaz.cursoandroid.tarea.dominio.Tienda;
+import es.daviddiaz.cursoandroid.tarea.dao.ComentariosDao;
 import es.daviddiaz.cursoandroid.tarea.dao.ListAdapter;
+import es.daviddiaz.cursoandroid.tarea.dominio.Comentario;
+import es.daviddiaz.cursoandroid.tarea.dominio.Tienda;
 
 public class ComentariosFragment 
 extends Fragment 
@@ -35,7 +37,7 @@ implements OnClickListener {
     adapter = new ListAdapter(
         getActivity(),
         R.layout.item_comentario,
-        tienda.getComentarios()) {
+        ComentariosDao.getComentarios()) {
 
       @Override
       public void onEntrada(Object entrada, View view) {
@@ -71,9 +73,11 @@ implements OnClickListener {
 
   @Override
   public void onClick(View v) {
-    String text = editText.getText().toString();
-    if (null!=tienda && !"".equals(text)) {
-      tienda.getComentarios().add(text);
+    if (null!=tienda && !"".equals(editText.getText().toString())) {
+      Comentario c = new Comentario();
+      c.setTiendaId(tienda.getId());
+      c.setTexto(editText.getText().toString());
+      ComentariosDao.getComentarios().add(c);
       adapter.notifyDataSetChanged();
       editText.setText("");
     }

@@ -6,22 +6,34 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import es.daviddiaz.cursoandroid.tarea.dominio.Comentario;
 import es.daviddiaz.cursoandroid.tarea.dominio.Tienda;
 
 public class DBAdapter {
   private DBHelper dbHelper;
   private static final String DATABASE_NAME = "centrocomercial.db";
-  private static final int DATABASE_VERSION = 1;
+  private static final int DATABASE_VERSION = 2;
 
-  public DBAdapter (Context context){
+  public DBAdapter (Context context) {
     dbHelper = new DBHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
   }
 
-  public void insert(Tienda teinda){
-    ContentValues values = buildContentValuesFromPlace(teinda);
+  public void insert(Tienda tienda) {
+    ContentValues values = getContentValue(tienda);
     SQLiteDatabase db = dbHelper.getWritableDatabase();
     try {
       db.insertWithOnConflict(DBHelper.TIENDAS_TABLE, null, values, 
+          SQLiteDatabase.CONFLICT_IGNORE);
+    } finally {
+      db.close();
+    }
+  }
+  
+  public void insert(Comentario comentario){
+    ContentValues values = getContentValue(comentario);
+    SQLiteDatabase db = dbHelper.getWritableDatabase();
+    try {
+      db.insertWithOnConflict(DBHelper.COMENTARIOS_TABLE, null, values, 
           SQLiteDatabase.CONFLICT_IGNORE);
     } finally {
       db.close();
@@ -59,23 +71,30 @@ public class DBAdapter {
     }
     return tiendas;
   }
-
-  public int countTiendas() {
-    int total = 0;
-    Cursor cursor=null;
+  
+  public ArrayList<Comentario> getComentarios(){
+    ArrayList<Comentario> comentarios = new ArrayList<Comentario>();
+    Cursor cursor = null;
     try {
       SQLiteDatabase db = dbHelper.getReadableDatabase();
-      cursor = db.query(DBHelper.TIENDAS_TABLE, null, null, null, null,
+      cursor = db.query(DBHelper.COMENTARIOS_TABLE, null, null, null, null, 
           null, null);
-      total = cursor.getCount();
+      while (cursor.moveToNext()) {
+        Comentario comentario = new Comentario();
+        comentario.setId(cursor.getInt(cursor.getColumnIndex(DBHelper.FIELD_ID)));
+        comentario.setTiendaId(cursor.getInt(cursor.getColumnIndex(DBHelper.FIELD_TIENDA_ID)));
+        comentario.setTexto(cursor.getString(cursor.getColumnIndex(DBHelper.FIELD_TEXTO)));
+        comentarios.add(comentario);
+      }
     } finally {
-      if (null!=cursor)
+      if (null!=cursor) {
         cursor.close();
+      }
     }
-    return total;
+    return comentarios;
   }
 
-  public ContentValues buildContentValuesFromPlace (Tienda tienda) {
+  public ContentValues getContentValue (Tienda tienda) {
     ContentValues values = new ContentValues();
     values.put(DBHelper.FIELD_NOMBRE, tienda.getNombre());
     values.put(DBHelper.FIELD_DIRECCION, tienda.getDireccion());
@@ -87,6 +106,13 @@ public class DBAdapter {
     values.put(DBHelper.FIELD_ICONO, tienda.getIcono());
     values.put(DBHelper.FIELD_LATITUD, tienda.getLocation().latitude);
     values.put(DBHelper.FIELD_LONGITUDE, tienda.getLocation().longitude);
+    return values;
+  }  
+  
+  public ContentValues getContentValue (Comentario comentario) {
+    ContentValues values = new ContentValues();
+    values.put(DBHelper.FIELD_TIENDA_ID, comentario.getTiendaId());
+    values.put(DBHelper.FIELD_TEXTO, comentario.getTexto());
     return values;
   }
 }

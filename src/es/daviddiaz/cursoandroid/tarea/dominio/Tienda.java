@@ -1,8 +1,5 @@
 package es.daviddiaz.cursoandroid.tarea.dominio;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.google.android.gms.maps.model.LatLng;
 
 /**
@@ -23,8 +20,6 @@ public class Tienda {
   private int icono;
   private int fotografia;
   private LatLng location;
-
-  List<String> comentarios = new ArrayList<String>();
 
   public Tienda() {
   }
@@ -101,10 +96,6 @@ public class Tienda {
 
   public void setFotografia(int fotografia) {
     this.fotografia = fotografia;
-  }
-
-  public List<String> getComentarios() {
-    return comentarios;
   }
 
   public void setLocation(double latitud, double longitud) {

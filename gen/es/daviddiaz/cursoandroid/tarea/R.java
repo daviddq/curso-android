@@ -1509,9 +1509,13 @@ containing a value of this type.
         public static final int drawer_close=0x7f070031;
         public static final int drawer_open=0x7f070030;
         public static final int hello_world=0x7f070037;
+        public static final int mapa_hibrido=0x7f07003b;
+        public static final int mapa_normal=0x7f070039;
+        public static final int mapa_satelite=0x7f07003a;
+        public static final int mapa_terreno=0x7f07003c;
         public static final int msg_share=0x7f07002f;
         public static final int placeholder=0x7f070032;
-        public static final int title_activity_borrar=0x7f070039;
+        public static final int title_activity_borrar=0x7f07003d;
         public static final int title_activity_image_detail=0x7f07002e;
         public static final int title_activity_main=0x7f070035;
         public static final int title_activity_main_activity2=0x7f070038;

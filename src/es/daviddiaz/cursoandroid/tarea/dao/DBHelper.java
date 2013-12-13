@@ -17,10 +17,13 @@ public class DBHelper extends SQLiteOpenHelper {
   public final static String FIELD_ICONO = "icono";
   public final static String FIELD_LATITUD = "latitud";
   public final static String FIELD_LONGITUDE = "longitud";
+  public final static String FIELD_TIENDA_ID = "tiendaId";
+  public final static String FIELD_TEXTO = "texto";
 
   public final static String TIENDAS_TABLE = "tiendas";
+  public final static String COMENTARIOS_TABLE = "comentarios";
   
-  private final static String CREATE_STATEMENT = "CREATE TABLE " +
+  private final static String CREATE_TIENDAS = "CREATE TABLE " +
       TIENDAS_TABLE + "(" + 
       FIELD_ID + " integer primary key autoincrement, " +
       FIELD_NOMBRE + " text, " +
@@ -33,6 +36,11 @@ public class DBHelper extends SQLiteOpenHelper {
       FIELD_ICONO + " integer, "+
       FIELD_LATITUD + " real, "+
       FIELD_LONGITUDE + " real)";
+  
+  private final static String CREATE_COMENTARIOS = "CREATE TABLE " +
+      COMENTARIOS_TABLE + "(" + 
+      FIELD_ID + " integer primary key autoincrement, " +
+      FIELD_TEXTO + " text)";
 
   public DBHelper(Context context, String name, CursorFactory factory, 
       int version) {
@@ -41,12 +49,19 @@ public class DBHelper extends SQLiteOpenHelper {
 
   @Override
   public void onCreate(SQLiteDatabase db) {
-    db.execSQL(CREATE_STATEMENT);
+    crearEsquema(db);
   }
 
   @Override
   public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     db.execSQL("DROP TABLE IF EXISTS " + TIENDAS_TABLE);
-    onCreate(db);
+    db.execSQL("DROP TABLE IF EXISTS " + COMENTARIOS_TABLE);
+    
+    crearEsquema(db);
+  }
+  
+  private void crearEsquema(SQLiteDatabase db) {
+    db.execSQL(CREATE_TIENDAS);
+    db.execSQL(CREATE_COMENTARIOS);
   }
 }
