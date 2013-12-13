@@ -4,18 +4,18 @@
     <item
         android:id="@+id/mapaNormal"
         android:showAsAction="always"
-        android:title="Normal"/>
+        android:title="@string/mapa_normal"/>
     <item
         android:id="@+id/mapaSatelital"
         android:showAsAction="always"
-        android:title="Satelital"/>
+        android:title="@string/mapa_satelite"/>
     <item
         android:id="@+id/mapaHibrido"
         android:showAsAction="always"
-        android:title="Hibrido"/>
+        android:title="@string/mapa_hibrido"/>
     <item
         android:id="@+id/mapaTerreno"
         android:showAsAction="always"
-        android:title="Terreno"/>
+        android:title="@string/mapa_terreno"/>
 
 </menu>

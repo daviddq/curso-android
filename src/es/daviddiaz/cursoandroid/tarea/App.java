@@ -5,7 +5,6 @@ import es.daviddiaz.cursoandroid.tarea.dao.CentroComercialDao;
 import es.daviddiaz.cursoandroid.tarea.dao.FotosDao;
 
 public class App extends Application {
-  
   @Override
   public void onCreate() {
     CentroComercialDao.Inicializar(this);
