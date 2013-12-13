@@ -136,7 +136,6 @@ implements
   private boolean googlePlayDisponible() {
     int resultCode =
         GooglePlayServicesUtil.isGooglePlayServicesAvailable(getActivity());
-
     if (ConnectionResult.SUCCESS == resultCode) {
       return true;
     } else {

@@ -14,8 +14,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import es.daviddiaz.cursoandroid.tarea.R;
-import es.daviddiaz.cursoandroid.tarea.dao.CentroComercialDao;
-import es.daviddiaz.cursoandroid.tarea.dao.FotosDao;
 import es.daviddiaz.cursoandroid.tarea.fragments.ComunidadFragment;
 import es.daviddiaz.cursoandroid.tarea.fragments.ImagenesFragment;
 import es.daviddiaz.cursoandroid.tarea.fragments.TiendasFragment;

@@ -1,5 +1,6 @@
 [
     {
+        "id" : 1,
         "nombre" : "Tienda de Lego",
         "direccion" : "Dirección de la tienda de Lego",
         "telefono" : "+34111222333",
@@ -16,6 +17,7 @@
         "longitud" : -0.47947
     },
     {
+        "id" : 2,
         "nombre" : "Tienda de Libros",
         "direccion" : "Dirección de la tienda de Libros",
         "telefono" : "+34222333444",
@@ -32,6 +34,7 @@
         "longitud" : -0.47965
     },
     {
+        "id" : 3,
         "nombre" : "Tienda de Zapatos",
         "direccion" : "Dirección de la tienda de Zapatos",
         "telefono" : "+34333444555",
@@ -48,6 +51,7 @@
         "longitud" : -0.47942
     },
     {
+        "id" : 4,
         "nombre" : "Tienda de Ropa",
         "direccion" : "Dirección de la tienda de Ropa",
         "telefono" : "+34444555666",
@@ -64,6 +68,7 @@
         "longitud" : -0.47897
     },
     {
+        "id" : 5,
         "nombre" : "Tienda de Vinos",
         "direccion" : "Dirección de la tienda de Vinos",
         "telefono" : "+35556667776",
@@ -78,5 +83,22 @@
         ],
         "latitud" : 38.34554,
         "longitud" : -0.47865
-    }
+    },
+    {
+        "id" : 6,
+        "nombre" : "Tienda de Juegos",
+        "direccion" : "Dirección de la tienda de juegos",
+        "telefono" : "+34777888999",
+        "horario" : "Lunes-Viernes: 08:00am - 21:00pm\nSabados: 08:00am - 23:00pm\nDomingos: 08:00am - 14:00pm",
+        "web" : "http://tiendadejuegos.centrocomercial.com",
+        "email" : "tiendadejuegos@centrocomercial.com",
+        "icono" : "juegos",
+        "imagen" : "juegosstore",
+        "comentarios" : [
+            {"comentario" : "La tienda de juegos me gusta mucho. Es mi favorita"},
+            {"comentario" : "Es la tienda de juegos con mejores precios que conozco."}
+        ],
+        "latitud" : 38.34504,
+        "longitud" : -0.47947
+    }    
 ]

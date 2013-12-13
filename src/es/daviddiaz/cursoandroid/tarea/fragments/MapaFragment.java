@@ -2,7 +2,6 @@ package es.daviddiaz.cursoandroid.tarea.fragments;
 
 import java.util.HashMap;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
@@ -20,7 +19,6 @@ import android.widget.TextView;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient.ConnectionCallbacks;
 import com.google.android.gms.common.GooglePlayServicesClient.OnConnectionFailedListener;
-import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -38,12 +36,12 @@ import es.daviddiaz.cursoandroid.tarea.dominio.Tienda;
 
 public class MapaFragment 
 extends 
-  SupportMapFragment
+SupportMapFragment
 implements 
-  ConnectionCallbacks, 
-  OnConnectionFailedListener,
-  OnInfoWindowClickListener,
-  InfoWindowAdapter
+ConnectionCallbacks, 
+OnConnectionFailedListener,
+OnInfoWindowClickListener,
+InfoWindowAdapter
 
 {
   private GoogleMap map=null;
@@ -53,12 +51,14 @@ implements
   public static final long UPDATE_INTERVAL_IN_MILLISECONDS = MILLISECONDS_PER_SECOND * 5;
   public static final long FAST_INTERVAL_CEILING_IN_MILLISECONDS = MILLISECONDS_PER_SECOND * 1; 
   public final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
-  LocationClient locationClient;
-  HashMap<Marker, Tienda> markers_tiendas = new HashMap<Marker, Tienda>();
+
+  private HashMap<Marker, Tienda> markers_tiendas = new HashMap<Marker, Tienda>();
+  private LocationClient locationClient;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+
     this.savedInstanceState = savedInstanceState;
   }
 
@@ -94,22 +94,10 @@ implements
   public void onConnectionFailed(ConnectionResult connectionResult) {
     if (connectionResult.hasResolution()) {
       try {
-        connectionResult.startResolutionForResult(
-            getActivity(),
+        connectionResult.startResolutionForResult(getActivity(),
             CONNECTION_FAILURE_RESOLUTION_REQUEST);
       } catch (IntentSender.SendIntentException e) {
         Log.e("ERROR",Log.getStackTraceString(e));
-      }
-    } else {
-      Dialog errorDialog = GooglePlayServicesUtil.getErrorDialog(
-          connectionResult.getErrorCode(),
-          getActivity(),
-          CONNECTION_FAILURE_RESOLUTION_REQUEST);
-
-      if (errorDialog != null) {
-        ErrorDialogFragment errorFragment = new ErrorDialogFragment();
-        errorFragment.setDialog(errorDialog);
-        errorFragment.show(getActivity().getSupportFragmentManager(), "dialog");
       }
     }
   }
@@ -119,7 +107,7 @@ implements
     if (null==map) {
       return false;
     }
-
+    
     switch (item.getItemId()) {
     case R.id.mapaNormal:
       map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
@@ -175,8 +163,13 @@ implements
   }
 
   private void ponerMarkers() {
-    if (markers_tiendas.size()>0)
+    if (markers_tiendas.size()>0) {
       return;
+    }
+
+    if (null==map) {
+      return;
+    }
 
     for (Tienda t : CentroComercialDao.getTiendas()) {
       MarkerOptions options = new MarkerOptions()
