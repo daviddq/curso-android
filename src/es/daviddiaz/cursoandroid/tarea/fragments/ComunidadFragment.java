@@ -5,16 +5,21 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
+import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout;
+import uk.co.senab.actionbarpulltorefresh.library.listeners.OnRefreshListener;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.provider.SyncStateContract.Constants;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.PopupMenu.OnMenuItemClickListener;
@@ -36,12 +41,14 @@ import es.daviddiaz.cursoandroid.tarea.dao.FotosDao;
 import es.daviddiaz.cursoandroid.tarea.dominio.Foto;
 
 public class ComunidadFragment extends Fragment 
-implements OnClickListener, OnMenuItemClickListener {
+implements OnClickListener, OnMenuItemClickListener, OnRefreshListener {
   private static final int LOAD_FROM_GALLERY = 1;
   private static final int LOAD_FROM_CAMERA = 2;
-  
+
   private static final int ANCHO_IMAGEN = 640;
   private static final int ALTO_IMAGEN = 480;
+  
+  private static final int SIMULATED_REFRESH_LENGTH = 5000;
 
   public static RequestQueue requestQueue;
   FotoAdapter fotoAdapter;
@@ -49,6 +56,33 @@ implements OnClickListener, OnMenuItemClickListener {
   PopupMenu popup;
   String photoPath;
   ListView listView;
+  PullToRefreshLayout mPullToRefreshLayout;
+
+  @Override
+  public View onCreateView(LayoutInflater inflater, ViewGroup container,
+      Bundle savedInstanceState) {
+
+    requestQueue = Volley.newRequestQueue(getActivity());
+
+    View view = inflater.inflate(R.layout.fragment_comunidad, container, false);
+    botonCamara = (ImageView)view.findViewById(R.id.imageView);
+    listView = (ListView)view.findViewById(R.id.listView);
+    fotoAdapter = new FotoAdapter(getActivity(), FotosDao.getFotos());
+    listView.setAdapter(fotoAdapter);
+    popup = new PopupMenu(getActivity(), botonCamara);
+    popup.getMenuInflater().inflate(R.menu.menu_foto , popup.getMenu());
+    
+    mPullToRefreshLayout = (PullToRefreshLayout)view.findViewById(R.id.ptr_layout);
+    if (null!=mPullToRefreshLayout) {
+      ActionBarPullToRefresh.from(getActivity())
+        .allChildrenArePullable()
+        .listener(this)
+        .setup(mPullToRefreshLayout);
+    }
+    
+    return view; 
+  }
+
 
   @Override
   public void onActivityCreated(Bundle savedInstanceState) {
@@ -113,10 +147,10 @@ implements OnClickListener, OnMenuItemClickListener {
     FotosDao.getFotos().add(new Foto(null, bitmap, timeStamp, 2));
     fotoAdapter.notifyDataSetChanged();
   }
-  
+
   private void cargarImagenDesdeCamara() {
     String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", 
-      Locale.getDefault()).format(Calendar.getInstance().getTime());
+        Locale.getDefault()).format(Calendar.getInstance().getTime());
     Bitmap bitmap = resizeBitmap(photoPath, ANCHO_IMAGEN, ALTO_IMAGEN);
     FotosDao.getFotos().add(new Foto(null, bitmap, timeStamp, 2));
     fotoAdapter.notifyDataSetChanged();    
@@ -126,22 +160,6 @@ implements OnClickListener, OnMenuItemClickListener {
     Uri contentUri = Uri.fromFile(f);
     mediaScanIntent.setData(contentUri);
     getActivity().sendBroadcast(mediaScanIntent);
-  }
-
-  @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container,
-      Bundle savedInstanceState) {
-
-    requestQueue = Volley.newRequestQueue(getActivity());
-
-    View view = inflater.inflate(R.layout.fragment_comunidad, container, false);
-    botonCamara = (ImageView)view.findViewById(R.id.imageView);
-    listView = (ListView)view.findViewById(R.id.listView);
-    fotoAdapter = new FotoAdapter(getActivity(), FotosDao.getFotos());
-    listView.setAdapter(fotoAdapter);
-    popup = new PopupMenu(getActivity(), botonCamara);
-    popup.getMenuInflater().inflate(R.menu.menu_foto , popup.getMenu());
-    return view; 
   }
 
   @Override
@@ -192,7 +210,7 @@ implements OnClickListener, OnMenuItemClickListener {
   private File setUpFile() {
     String albumName = "ejemplo";
     File albumDir;
-    
+
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO) {
       albumDir = new File(
           Environment.getExternalStoragePublicDirectory(
@@ -210,9 +228,38 @@ implements OnClickListener, OnMenuItemClickListener {
     albumDir.mkdirs();
 
     String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss",
-      Locale.getDefault()).format(Calendar.getInstance().getTime());
+        Locale.getDefault()).format(Calendar.getInstance().getTime());
     String imageFileName = "IMG_" + timeStamp + ".jpg";
     File imageF = new File(albumDir + "/" + imageFileName);
     return imageF;
+  }
+
+  @Override
+  public void onRefreshStarted(View view) {
+      listView.setVisibility(View.GONE);
+
+      new AsyncTask<Void, Void, Void>() {
+
+          @Override
+          protected Void doInBackground(Void... params) {
+              try {
+                  Thread.sleep(SIMULATED_REFRESH_LENGTH);
+              } catch (InterruptedException e) {
+                  e.printStackTrace();
+              }
+              return null;
+          }
+
+          @Override
+          protected void onPostExecute(Void result) {
+              super.onPostExecute(result);
+
+              mPullToRefreshLayout.setRefreshComplete();
+
+              if (getView() != null) {
+                listView.setVisibility(View.VISIBLE);
+              }
+          }
+      }.execute();
   }  
 }
