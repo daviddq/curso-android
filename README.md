@@ -1,5 +1,5 @@
 Prácticas del curso de Android (Semana 3)
-Alumno: David Díaz
+Alumno: David
 =========================================
 
 En esta práctica:
